@@ -1,0 +1,85 @@
+<div class="add-product-section container">
+    <form class="form-horizontal" [formGroup]="productForm" (ngSubmit)="onSaveProduct(productForm.value)" ngNativeValidate>
+        
+        <!-- Form Name -->
+        <legend>PRODUCTS</legend>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="name">NAME</label>
+              <input type="text" class="form-control" id="name" placeholder="PRODUCT NAME" formControlName="name"
+              [ngClass]="{ 'is-invalid': submitted && productForm.controls.name.errors }" />
+            <div *ngIf="submitted && productForm.controls.name.errors" class="invalid-feedback">
+              <div *ngIf="productForm.controls.name.errors.required">Name is required</div>
+            </div>
+            </div>
+           
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="sku">SKU</label>
+              <input type="text" class="form-control" id="sku" placeholder="SKU" formControlName="sku"
+              [ngClass]="{ 'is-invalid': submitted && productForm.controls.sku.errors }" />
+              <div *ngIf="submitted && productForm.controls.sku.errors" class="invalid-feedback">
+                <div *ngIf="productForm.controls.sku.errors.required">SKU is required</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="color">COLOR</label>
+              <input type="text" class="form-control" id="color" placeholder="color"   formControlName="color"
+               [ngClass]="{ 'is-invalid': submitted && productForm.controls.color.errors }" />
+              <div *ngIf="submitted && productForm.controls.color.errors" class="invalid-feedback">
+                <div *ngIf="productForm.controls.color.errors.required">Color is required</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="categories">Category</label>
+              <select id="categories" class="form-control"  formControlName="category"
+              [ngClass]="{ 'is-invalid': submitted && productForm.controls.category.errors }" >
+              
+                <!-- <option value="">Choose...</option> -->
+                <option *ngFor="let item of category" value="{{item._id}}"> {{item.name}}
+                </option>     
+                 </select>     
+                <div *ngIf="submitted && productForm.controls.category.errors" class="invalid-feedback">
+                    <div *ngIf="productForm.controls.category.errors.required">Category is required</div>
+                  </div>    
+            </div>
+            <div class=" col-md-6" >
+              <label for="origin">ORIGIN</label>
+              <input type="text" class="form-control" id="origin" placeholder="ORIGIN"   formControlName="origin"
+              [ngClass]="{ 'is-invalid': submitted && productForm.controls.origin.errors }" />
+              <div *ngIf="submitted && productForm.controls.origin.errors" class="invalid-feedback">
+                <div *ngIf="productForm.controls.origin.errors.required">Origin is required</div>
+              </div>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Image</label>
+            <div class="col-md-4">
+            <input id="filebutton" name="filebutton" class="input-file" type="file"
+            (change)="onSelectFile($event)"
+             [(ngModel)]="image" [ngModelOptions]="{standalone:   true}">
+            </div>
+        </div>
+        
+        <div class="row alert alert-success" *ngIf="message">
+            <div class="col-12">
+                <!-- <button class="btn btn-primary float-right" type="submit">Save </button> -->
+                {{message}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-right" type="submit">Save </button>
+            </div>
+        </div>
+     
+        
+    </form>
+</div>

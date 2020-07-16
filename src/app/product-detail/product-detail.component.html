@@ -1,0 +1,15 @@
+<div class="container">
+    <h4>Product-detail </h4>
+    <div class="row"> 
+        <div class="col-4 " *ngIf="product">
+            <img src="{{product.image}}" alt="No image">
+        </div>
+        <div class="col-8" *ngIf="product">
+            <p>Name : {{product.name}} </p>
+            <p class="mt-2">SKU : {{product.sku}} </p>
+            <p class="mt-2">COLOR : {{product.color}} </p>
+            <p class="mt-2">Origin : {{product.origin}} </p>
+            <p class="mt-2"> added date : {{product.createdAt | date}} </p>
+        </div>
+    </div>
+</div>
